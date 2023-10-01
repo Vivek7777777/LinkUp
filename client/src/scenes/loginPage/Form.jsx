@@ -183,8 +183,7 @@ const Form = () => {
                                 />
                                 <Box
                                     gridColumn="span 4"
-                                    // border="10px solid white"
-                                    border={`1px solid ${palette.netural.medium}`}
+                                    border={`1px solid ${palette.neutral.medium}`}
                                     borderRadius="5px"
                                     p="1rem"
                                 >
