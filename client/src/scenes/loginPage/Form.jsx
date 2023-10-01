@@ -7,10 +7,10 @@ import {
     Typography,
     useTheme
 } from "@mui/material";
-import EditOutlinedIcon from "@mui/icons-material";
+// import EditOutlinedIcon from "@mui/icons-material";
 import { Formik, validateYupSchema } from "formik";
 import * as yup from "yup";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setLogin } from "state";
 import Dropzone from "react-dropzone";
@@ -20,7 +20,7 @@ import FlexBetween from "components/FlexBetween";
 const registerSchema = yup.object().shape({
     firstName: yup.string().required("required"),
     lastName: yup.string().required("required"),
-    email: yup.email("invalid email").required("required"),
+    email: yup.string().email("invalid email").required("required"),
     password: yup.string().required("required"),
     location: yup.string().required("required"),
     occupation: yup.string().required("required"),
@@ -54,9 +54,65 @@ const Form = () => {
     const navigate = useNavigate();
     const isNonMobile = useMediaQuery("(min-width: 600px)");
     const isLogin = pageType === "login";
-    const isRegister = pageType === "register";
+    // const isRegister = pageType === "register";
+    const isRegister = 1;
 
-    const handleFormSubmit = async (values, onSubmitProps) => { };
+
+    const register = async (values, onSubmitProps) => {
+        // this allows us to send form info with image
+        const formData = new FormData();
+        for(let value in values){
+            formData.append(value, values[value]);
+        }
+        formData.append("picturePath", values.picture.name);
+
+        const savedUserResponse = await fetch(
+            "http://localhost:3001/auth/register",
+            {
+                method: "POST",
+                body: formData
+            }
+        )
+
+        const savedUser = await savedUserResponse.json();
+        onSubmitProps.resetForm();
+
+        if(savedUser){
+            setPageType("login");
+        }
+    };
+
+    const login = async (values, onSubmitProps) => {
+        // this allows us to send form info with image
+        const loggedInResponse = await fetch(
+            "http://localhost:3001/auth/register",
+            {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(values)
+            }
+        )
+
+        const loggedIn = await loggedInResponse.json();
+        onSubmitProps.resetForm();
+
+        if(loggedIn){
+            dispatch(
+                setLogin({
+                    user: loggedIn.user,
+                    token: loggedIn.token
+                })
+            );
+            navigate("/home");
+        }
+    };
+
+    const handleFormSubmit = async (values, onSubmitProps) => {
+        if(isLogin)
+            await login(values, onSubmitProps);
+        if(isRegister)
+            await register(values, onSubmitProps);
+    };
 
     return (
         <Formik
@@ -127,6 +183,7 @@ const Form = () => {
                                 />
                                 <Box
                                     gridColumn="span 4"
+                                    // border="10px solid white"
                                     border={`1px solid ${palette.netural.medium}`}
                                     borderRadius="5px"
                                     p="1rem"
@@ -153,7 +210,7 @@ const Form = () => {
                                                 ) : (
                                                     <FlexBetween>
                                                         <Typography>{values.picture.name}</Typography>
-                                                        <EditOutlinedIcon />
+                                                        {/* <EditOutlinedIcon /> */}
                                                     </FlexBetween>
                                                 )}
                                             </Box>
@@ -185,6 +242,43 @@ const Form = () => {
                             sx={{ gridColumn: "span 4" }}
                         />
                     </Box>
+
+                    {/* BUTTON */}
+                    <Box>
+                        <Button
+                            fullWidth
+                            type="submit"
+                            sx={{
+                                m: "2rem 0",
+                                p: "1rem",
+                                backgroundColor: palette.primary.main,
+                                color: palette.background.alt,
+                                "&:hover": {color: palette.primary.main}
+                            }}
+                        >
+                            {isLogin ? "LOGIN" : "REGISTER"}
+                        </Button>
+                        <Typography
+                            onClick = {() => {
+                                setPageType(isLogin ? "register" : "login");
+                                resetForm();
+                            }}
+                            sx={{
+                                textDecoration: "underline",
+                                color: palette.primary.main,
+                                "&:hover": {
+                                    cursor: "pointer",
+                                    color: palette.primary.light
+                                }
+                            }}
+                        >
+                            {isLogin 
+                            ? "Don't have an account sign up here."
+                            : "Alredy have an account login here."}
+
+                        </Typography>
+
+                    </Box>
                 </form>
             )}
 
@@ -194,8 +288,4 @@ const Form = () => {
 
 
 
-
-
 export default Form;
-
-

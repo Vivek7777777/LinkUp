@@ -1,4 +1,5 @@
-import { Boxl, Typography, useTheme, useMediaQuery, Box } from "@mui/material";
+import { Typography, useTheme, useMediaQuery, Box } from "@mui/material";
+import Form from "./Form";
 
 
 
@@ -13,6 +14,7 @@ const LoginPage = () =>{
         <Box>
             <Box
                 width="100%"
+                // backgroundColor="#000"
                 backgroundColor={theme.palette.background.alt}
                 p="1rem 6%"
                 textAlign="center"
@@ -42,6 +44,7 @@ const LoginPage = () =>{
                 >
                 Welcome to Sociopedia
                 </Typography>
+                <Form />
             </Box>
         </Box>
     )

@@ -20,15 +20,16 @@ function App() {
   return (
     <div className="app">
       <BrowserRouter>
-        <ThemeProvider theme={theme} />
-        <CssBaseline />
-        <Routes>
-          
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/profile/:userId" element={<ProfilePage />} />
+        <ThemeProvider theme={theme} >
+          <CssBaseline />
+          <Routes>
+            
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/home" element={<HomePage />} />
+            <Route path="/profile/:userId" element={<ProfilePage />} />
 
-        </Routes>
+          </Routes>
+        </ThemeProvider>
       </BrowserRouter>
     </div>
   );
