@@ -8,13 +8,14 @@ import {
     useTheme
 } from "@mui/material";
 // import EditOutlinedIcon from "@mui/icons-material";
-import { Formik, validateYupSchema } from "formik";
+import { Formik } from "formik";
 import * as yup from "yup";
 import { json, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setLogin } from "state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
+
 
 
 const registerSchema = yup.object().shape({
@@ -54,8 +55,7 @@ const Form = () => {
     const navigate = useNavigate();
     const isNonMobile = useMediaQuery("(min-width: 600px)");
     const isLogin = pageType === "login";
-    // const isRegister = pageType === "register";
-    const isRegister = 1;
+    const isRegister = pageType === "register";
 
 
     const register = async (values, onSubmitProps) => {
@@ -85,7 +85,7 @@ const Form = () => {
     const login = async (values, onSubmitProps) => {
         // this allows us to send form info with image
         const loggedInResponse = await fetch(
-            "http://localhost:3001/auth/register",
+            "http://localhost:3001/auth/login",
             {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
@@ -100,7 +100,7 @@ const Form = () => {
             dispatch(
                 setLogin({
                     user: loggedIn.user,
-                    token: loggedIn.token
+                    token: loggedIn.token,
                 })
             );
             navigate("/home");
