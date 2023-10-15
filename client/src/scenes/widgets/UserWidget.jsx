@@ -8,7 +8,7 @@ import { Typography, Divider, Box, useTheme } from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import UserImage from "components/UserImage";
 import WidgetWrapper from "components/WidgetWrapper";
-import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -64,6 +64,7 @@ const UserWidget = ({ userId, picturePath }) => {
                 <FlexBetween
                     gap="1rem"
                 >
+                    {/* {console.log(picturePath)   } */}
                     <UserImage image={picturePath} />
                     <Box>
                         <Typography
@@ -79,9 +80,6 @@ const UserWidget = ({ userId, picturePath }) => {
                         >
                             {firstName} {lastName}
                         </Typography>
-                        {/* <Typography color={medium}>
-                            {friends.length} frineds
-                        </Typography> */}
                         <Typography color={medium}>{friends.length} friends</Typography>
 
                     </Box>

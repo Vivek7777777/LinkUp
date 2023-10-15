@@ -3,13 +3,14 @@ import { useSelector } from "react-redux";
 import Navbar from "scenes/navbar";
 import UserWidget from "scenes/widgets/UserWidget";
 import MyPostWidget from "scenes/widgets/MyPostWidget";
+import PostsWidget from "scenes/widgets/PostsWidget";
 
 
 
 const HomePage = () => {
 
     const isNonMobileScreen = useMediaQuery("(min-width:1000px)");
-    const {_id, picturePath} = useSelector((state) => state.user);
+    const { _id, picturePath } = useSelector((state) => state.user);
 
 
     return (
@@ -18,7 +19,7 @@ const HomePage = () => {
             <Box
                 width="100%"
                 padding="2rem 6%"
-                display={isNonMobileScreen ? "flex" : "block"}  
+                display={isNonMobileScreen ? "flex" : "block"}
                 gap=".5rem"
                 justifyContent="space-between"
             >
@@ -31,9 +32,10 @@ const HomePage = () => {
                     flexBasis={isNonMobileScreen ? "42%" : undefined}
                     mt={isNonMobileScreen ? undefined : "2rem"}
                 >
-                    <MyPostWidget picturePath={picturePath}></MyPostWidget>
+                    <MyPostWidget picturePath={picturePath} />
+                    <PostsWidget userId={_id} />
                 </Box>
-                {isNonMobileScreen && <Box flexBasis="26%"></Box>}                
+                {isNonMobileScreen && <Box flexBasis="26%"></Box>}
             </Box>
         </Box>
     )

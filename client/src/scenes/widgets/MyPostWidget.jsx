@@ -21,7 +21,7 @@ import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
 import UserImage from "components/UserImage";
 import WidgetWrapper from "components/WidgetWrapper";
-import { useState, useSyncExternalStore } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
 
@@ -80,7 +80,7 @@ const MyPostWidget = ({ picturePath }) => {
                     border={`1px soiid ${medium}`}
                     mt="1rem"
                     borderRadius="5px"
-                    p={"1rem"}          //fdsjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjfdhasjkkkkkkkkkkkkk
+                    p="1rem"         
                 >
                     <Dropzone
                         acceptedFiles=".jpg, .jpeg, .png"
@@ -174,7 +174,6 @@ const MyPostWidget = ({ picturePath }) => {
                         color: palette.background.alt,
                         backgroundColor: palette.primary.main,
                         borderRadius: "3rem",
-                        cursor: "pointer"
                     }}
                 >
                     POST
