@@ -1,7 +1,6 @@
 import express from "express";
 import {getUser, getUserFriends, addRemoveFriend} from "../controllers/user.js";
 import { verifyToken } from "../middleware/auth.js";
-import { get } from "mongoose";
 
 
 const router = express.Router();

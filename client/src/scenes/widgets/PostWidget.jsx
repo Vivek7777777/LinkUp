@@ -35,8 +35,11 @@ const PostWidget = ({
     const dispatch = useDispatch();
     const token = useSelector((state) => state.token);
     const loggedInUserId = useSelector((state) => state.user._id);
+    // const isLiked = Boolean(likes[loggedInUserId] === undefined);
     const isLiked = Boolean(likes[loggedInUserId]);
     const likeCount = Object.keys(likes).length;
+
+    // console.log(postUserId);
 
     const { palette } = useTheme();
     const primary = palette.primary.main,
@@ -56,14 +59,14 @@ const PostWidget = ({
         )
         const updatedPost = await response.json();
         dispatch(setPost({ post: updatedPost }));
-        console.log(response);
+        // console.log(response);
     }
 
 
     return (
         <WidgetWrapper m="2rem 0">
             <Friend
-                frinedId={postUserId}
+                friendId={postUserId}
                 name={name}
                 subtitle={location}
                 userPicturePath={userPicturePath}
@@ -84,12 +87,12 @@ const PostWidget = ({
                         borderRadius: ".75rem",
                         marginTop: ".75rem"
                     }}
-                    src={`https://images.unsplash.com/photo-1697081544011-e472e6a19cc8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80`}
-                    // src={`http://localhost:3001/assets/${picturePath}`}
+                    // src={`https://images.unsplash.com/photo-1697081544011-e472e6a19cc8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80`}
+                    src={`http://localhost:3001/assets/${picturePath}`}
                     alt="posts image"
                 />
             )}
-            {console.log(picturePath)}
+            {/* {console.log(picturePath)} */}
             <FlexBetween mt=".25rem">
                 <FlexBetween gap="1rem">
                     <FlexBetween gap=".3rem">
@@ -127,7 +130,7 @@ const PostWidget = ({
                 <Box
                     mt=".5rem"
                 >
-                    {comments.map((comment, i) => {
+                    {comments.map((comment, i) => (
                         <Box key={`${name}-${i}`}>
                             <Divider />
                             <Typography
@@ -140,7 +143,7 @@ const PostWidget = ({
                                 {comment}
                             </Typography>
                         </Box>
-                    })}
+                    ))}
                     <Divider />
                 </Box>
             )}
