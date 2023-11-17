@@ -13,9 +13,9 @@ export default function FriendListWidget({ userId }) {
     const token = useSelector((state) => state.token);
     const friends = useSelector((state) => state.user.friends);
 
-    console.log(friends);
-    console.log(userId);
-    console.log(token);
+    // console.log(friends);
+    // console.log(userId);
+    // console.log(token);
 
     const getFriends = async () => {
         try{
@@ -24,7 +24,7 @@ export default function FriendListWidget({ userId }) {
                     method: "GET",
                     headers: { Authorization: `Bearer ${token}` }
                 })
-
+            // console.log("get griends" + respose);
             const data = await respose.json();
             dispatch(setFriends({ friends: data }));
         }
@@ -59,7 +59,7 @@ export default function FriendListWidget({ userId }) {
                     <Friend
                         key={friend._id}
                         friendId={friend._id}
-                        name={`${friend.firstName} ${lastName}`}
+                        name={`${friend.firstName} ${friend.lastName}`}
                         subtitle={friend.occupation}
                         userPicturePath={friend.picturePath}
                     />

@@ -11,7 +11,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     const navigate = useNavigate();
     const { _id } = useSelector((state) => state.user);
     const token = useSelector((state) => state.token);
-    const friends = useSelector((state) => state.user.friend);
+    const friends = useSelector((state) => state.user.friends);
 
     const { palette } = useTheme();
     const primaryLight = palette.primary.light;
@@ -21,8 +21,8 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
     // console.log(friends);
 
-    // const isFriend = friends.find((friend) => friend._id === friendId);
-    const isFriend = false;
+    const isFriend = friends.find((friend) => friend._id === friendId);
+    // const isFriend = false;
     // console.log(isFriend);
 
     // console.log(_id);
@@ -42,7 +42,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
         );
         const data = await response.json();
         dispatch(setFriends({ friends: data }));
-        console.log("patchfriend " + response);
+        // console.log("patchfriend " + response);
     };
 
     return (

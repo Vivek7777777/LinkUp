@@ -16,6 +16,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
         })
         const data = await response.json();
         dispatch(setPosts({ posts: data }));
+        // console.log(data);
     }
 
     const getUserPosts = async () => {
@@ -25,7 +26,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
         })
         const data = await response.json();
         dispatch(setPosts({ posts: data }));
-        // console.log(data);
+        console.log(data);
     }
 
 

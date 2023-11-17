@@ -40,14 +40,16 @@ const PostWidget = ({
     const likeCount = Object.keys(likes).length;
 
     // console.log(postUserId);
+    // console.log(token);
 
     const { palette } = useTheme();
     const primary = palette.primary.main,
         main = palette.neutral.main;
 
     const patchLike = async () => {
+        // console.log(postId);
         const response = await fetch(
-            `http://localhost:3001/posts/${postId}/like`,
+            `http://localhost:3001/posts/${postId}/likes`,
             {
                 method: "PATCH",
                 headers: {
