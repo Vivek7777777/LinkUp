@@ -44,12 +44,12 @@ const PostWidget = ({
 
     const { palette } = useTheme();
     const primary = palette.primary.main,
-        main = palette.neutral.main;
+        main = palette.neutral.main;        
 
     const patchLike = async () => {
         // console.log(postId);
         const response = await fetch(
-            `http://localhost:3001/posts/${postId}/likes`,
+            `https://link-up-1.vercel.app/posts/${postId}/likes`,
             {
                 method: "PATCH",
                 headers: {
@@ -89,8 +89,7 @@ const PostWidget = ({
                         borderRadius: ".75rem",
                         marginTop: ".75rem"
                     }}
-                    // src={`https://images.unsplash.com/photo-1697081544011-e472e6a19cc8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80`}
-                    src={`http://localhost:3001/assets/${picturePath}`}
+                    src={`https://link-up-1.vercel.app/assets/${picturePath}`}
                     alt="posts image"
                 />
             )}

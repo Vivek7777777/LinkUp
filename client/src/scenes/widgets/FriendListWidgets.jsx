@@ -18,7 +18,7 @@ export default function FriendListWidget({ userId }) {
 
     const getFriends = async () => {
         try{
-            const respose = await fetch(`http://localhost:3001/users/${userId}/friends`,
+            const respose = await fetch(`https://link-up-1.vercel.app/users/${userId}/friends`,
                 {
                     method: "GET",
                     headers: { Authorization: `Bearer ${token}` }
