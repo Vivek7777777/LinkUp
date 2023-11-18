@@ -1,6 +1,6 @@
 import { Box, useMediaQuery } from "@mui/material";
 import { useState, useEffect, useId } from "react";
-import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useParams } from "react-router-dom";
 import Navbar from "scenes/navbar";
 import FriendListWidget from "scenes/widgets/FriendListWidgets";

@@ -9,7 +9,6 @@ import WidgetWrapper from "components/WidgetWrapper";
 export default function FriendListWidget({ userId }) {
     const dispatch = useDispatch();
     const { palette } = useTheme();
-    // console.log(palette);
     const token = useSelector((state) => state.token);
     const friends = useSelector((state) => state.user.friends);
 
