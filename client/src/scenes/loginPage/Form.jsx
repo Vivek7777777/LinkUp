@@ -7,10 +7,10 @@ import {
     Typography,
     useTheme
 } from "@mui/material";
-// import EditOutlinedIcon from "@mui/icons-material";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Formik } from "formik";
 import * as yup from "yup";
-import { json, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setLogin } from "state";
 import Dropzone from "react-dropzone";
@@ -56,39 +56,67 @@ const Form = () => {
     const isNonMobile = useMediaQuery("(min-width: 600px)");
     const isLogin = pageType === "login";
     const isRegister = pageType === "register";
-
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     const register = async (values, onSubmitProps) => {
-        // this allows us to send form info with image
-        const formData = new FormData();
-        for(let value in values){
-            formData.append(value, values[value]);
-        }
-        formData.append("picturePath", values.picture.name);
-
-        const savedUserResponse = await fetch(
-            "https://link-up-1.vercel.app/auth/register",
-            {
-                method: "POST",
-                body: formData
+        try {
+            // this allows us to send form info with image
+            const formData = new FormData();
+            for (let value in values) {
+                if (value === "picture") {
+                    formData.append("image", values.picture)
+                }
+                else {
+                    formData.append(value, values[value]);
+                }
             }
-        )
 
-        const savedUser = await savedUserResponse.json();
-        onSubmitProps.resetForm();
+            //upload image to imgbb database
+            const apikey = process.env.REACT_APP_API_KEY;
+            const imgResponse = await fetch(
+                `https://api.imgbb.com/1/upload?key=${apikey}`,
+                {
+                    method: "POST",
+                    body: formData
+                }
+            )
+            
+            const imgData = await imgResponse.json();
 
-        if(savedUser){
-            setPageType("login");
+            const formObj = {
+                ...values,
+                picturePath: imgData.data.url,
+            };
+
+            const savedUserResponse = await fetch(
+                `${backendUrl}/auth/register`,
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(formObj),
+                }
+            )
+
+            const savedUser = await savedUserResponse.json();
+            onSubmitProps.resetForm();
+
+            if (savedUser) {
+                setPageType("login");
+            }
+        }
+        catch (err) {
+            console.log(err);
         }
     };
 
     const login = async (values, onSubmitProps) => {
         // this allows us to send form info with image
+
         const loggedInResponse = await fetch(
-            "https://link-up-1.vercel.app/auth/login",
+            `${backendUrl}/auth/login`,
             {
                 method: "POST",
-                headers: {"Content-Type": "application/json"},
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(values)
             }
         )
@@ -96,7 +124,7 @@ const Form = () => {
         const loggedIn = await loggedInResponse.json();
         onSubmitProps.resetForm();
 
-        if(loggedIn){
+        if (loggedIn) {
             dispatch(
                 setLogin({
                     user: loggedIn.user,
@@ -108,9 +136,9 @@ const Form = () => {
     };
 
     const handleFormSubmit = async (values, onSubmitProps) => {
-        if(isLogin)
+        if (isLogin)
             await login(values, onSubmitProps);
-        if(isRegister)
+        if (isRegister)
             await register(values, onSubmitProps);
     };
 
@@ -209,7 +237,7 @@ const Form = () => {
                                                 ) : (
                                                     <FlexBetween>
                                                         <Typography>{values.picture.name}</Typography>
-                                                        {/* <EditOutlinedIcon /> */}
+                                                        <EditOutlinedIcon />
                                                     </FlexBetween>
                                                 )}
                                             </Box>
@@ -252,13 +280,13 @@ const Form = () => {
                                 p: "1rem",
                                 backgroundColor: palette.primary.main,
                                 color: palette.background.alt,
-                                "&:hover": {color: palette.primary.main}
+                                "&:hover": { color: palette.primary.main }
                             }}
                         >
                             {isLogin ? "LOGIN" : "REGISTER"}
                         </Button>
                         <Typography
-                            onClick = {() => {
+                            onClick={() => {
                                 setPageType(isLogin ? "register" : "login");
                                 resetForm();
                             }}
@@ -271,9 +299,9 @@ const Form = () => {
                                 }
                             }}
                         >
-                            {isLogin 
-                            ? "Don't have an account sign up here."
-                            : "Alredy have an account login here."}
+                            {isLogin
+                                ? "Don't have an account sign up here."
+                                : "Alredy have an account login here."}
 
                         </Typography>
 
