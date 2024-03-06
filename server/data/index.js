@@ -18,7 +18,7 @@ export const users = [
     lastName: "me",
     email: "aaaaaaa@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
-    picturePath: "p11.jpeg",
+    picturePath: "https://i.ibb.co/ykcj7tV/p11.jpg",
     friends: [],
     location: "San Fran, CA",
     occupation: "Software Engineer",
@@ -34,7 +34,7 @@ export const users = [
     lastName: "Ralph",
     email: "thataaa@gmail.com",
     password: "$!FEAS@!O)_IDJda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
-    picturePath: "p3.jpeg",
+    picturePath: "https://i.ibb.co/HTmN4DL/p3.jpg",
     friends: [],
     location: "New York, CA",
     occupation: "Degenerate",
@@ -50,7 +50,7 @@ export const users = [
     lastName: "Guy",
     email: "someguy@gmail.com",
     password: "da39a3ee5e6b4b0d3255bfef95601890afd80709",
-    picturePath: "p4.jpeg",
+    picturePath: "https://i.ibb.co/8PfKs7z/p4.jpg",
     friends: [],
     location: "Canada, CA",
     occupation: "Data Scientist Hacker",
@@ -66,7 +66,7 @@ export const users = [
     lastName: "Doing",
     email: "whatchadoing@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
-    picturePath: "p6.jpeg",
+    picturePath: "https://i.ibb.co/gvm3MnK/p6.jpg",
     friends: [],
     location: "Korea, CA",
     occupation: "Educator",
@@ -82,7 +82,7 @@ export const users = [
     lastName: "Doe",
     email: "janedoe@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
-    picturePath: "p5.jpeg",
+    picturePath: "https://i.ibb.co/vVYJXq0/p5.jpg",
     friends: [],
     location: "Utah, CA",
     occupation: "Hacker",
@@ -98,7 +98,7 @@ export const users = [
     lastName: "Dunn",
     email: "harveydunn@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
-    picturePath: "p7.jpeg",
+    picturePath: "https://i.ibb.co/YRfBQBh/p7.jpg",
     friends: [],
     location: "Los Angeles, CA",
     occupation: "Journalist",
@@ -114,7 +114,7 @@ export const users = [
     lastName: "Vowel",
     email: "carlyvowel@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
-    picturePath: "p8.jpeg",
+    picturePath: "https://i.ibb.co/y0YW1Th/p8.jpg",
     friends: [],
     location: "Chicago, IL",
     occupation: "Nurse",
@@ -130,7 +130,7 @@ export const users = [
     lastName: "Dunn",
     email: "jessicadunn@gmail.com",
     password: "$2b$10$dsasdgsagasda//G9JxQ4bQ8KXf4OAIe/X/AK9skyWUy",
-    picturePath: "p9.jpeg",
+    picturePath: "https://i.ibb.co/smZqrR9/p9.jpg",
     friends: [],
     location: "Washington, DC",
     occupation: "A Student",
@@ -150,8 +150,8 @@ export const posts = [
     lastName: "Ralph",
     location: "New York, CA",
     description: "Some really long random description",
-    picturePath: "post1.jpeg",
-    userPicturePath: "p3.jpeg",
+    picturePath: "https://i.ibb.co/sq0msR6/post1.jpg",
+    userPicturePath: "https://i.ibb.co/HTmN4DL/p3.jpg",
     likes: new Map([
       [userIds[0], true],
       [userIds[2], true],
@@ -172,8 +172,8 @@ export const posts = [
     location: "Korea, CA",
     description:
       "Another really long random description. This one is longer than the previous one.",
-    picturePath: "post2.jpeg",
-    userPicturePath: "p6.jpeg",
+    picturePath: "https://i.ibb.co/CJZNcv8/post2.jpg",
+    userPicturePath: "https://i.ibb.co/gvm3MnK/p6.jpg",
     likes: new Map([
       [userIds[7], true],
       [userIds[4], true],
@@ -195,8 +195,8 @@ export const posts = [
     location: "Utah, CA",
     description:
       "This is the last really long random description. This one is longer than the previous one.",
-    picturePath: "post3.jpeg",
-    userPicturePath: "p5.jpeg",
+    picturePath: "https://i.ibb.co/Cnv93bB/post3.jpg",
+    userPicturePath: "https://i.ibb.co/vVYJXq0/p5.jpg",
     likes: new Map([
       [userIds[1], true],
       [userIds[6], true],
@@ -219,8 +219,8 @@ export const posts = [
     location: "Los Angeles, CA",
     description:
       "This is the last really long random description. This one is longer than the previous one. Man I'm bored. I'm going to keep typing until I run out of things to say.",
-    picturePath: "post4.jpeg",
-    userPicturePath: "p7.jpeg",
+    picturePath: "https://i.ibb.co/pXDw6w2/post4.jpg",
+    userPicturePath: "https://i.ibb.co/YRfBQBh/p7.jpg",
     likes: new Map([
       [userIds[1], true],
       [userIds[6], true],
@@ -243,8 +243,8 @@ export const posts = [
     location: "Chicago, IL",
     description:
       "Just a short description. I'm tired of typing. I'm going to play video games now.",
-    picturePath: "post5.jpeg",
-    userPicturePath: "p8.jpeg",
+    picturePath: "https://i.ibb.co/0BBB19Q/post5.jpg",
+    userPicturePath: "https://i.ibb.co/y0YW1Th/p8.jpg",
     likes: new Map([
       [userIds[1], true],
       [userIds[3], true],
@@ -267,8 +267,8 @@ export const posts = [
     location: "Washington, DC",
     description:
       "For the last time, I'm going to play video games now. I'm tired of typing. I'm going to play video games now.",
-    picturePath: "post6.jpeg",
-    userPicturePath: "p9.jpeg",
+    picturePath: "https://i.ibb.co/zn9W2W2/post6.jpg",
+    userPicturePath: "https://i.ibb.co/smZqrR9/p9.jpg",
     likes: new Map([
       [userIds[1], true],
       [userIds[2], true],
@@ -283,3 +283,8 @@ export const posts = [
     ],
   },
 ];
+
+
+
+
+
