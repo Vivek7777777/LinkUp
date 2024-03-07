@@ -23,10 +23,11 @@ const UserWidget = ({ userId, picturePath }) => {
     const dark = palette.neutral.dark,
         medium = palette.neutral.medium,
         main = palette.neutral.main;
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 
     const getUser = async () => {
-        const response = await fetch(`https://link-up-1.vercel.app/users/${userId}`, {
+        const response = await fetch(`${backendUrl}/users/${userId}`, {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` }
         });
@@ -137,7 +138,7 @@ const UserWidget = ({ userId, picturePath }) => {
                     fontWeight="500"
                     color={main}
                 >
-                    Socila Profiles
+                    Social Profiles
                 </Typography>
 
                 <FlexBetween

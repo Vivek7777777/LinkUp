@@ -16,16 +16,15 @@ const ProfilePage = () =>{
     const {userId} = useParams();
     const token = useSelector((state) => state.token);
     const isNonMobileScreen = useMediaQuery("(min-width:1000px)");
-    console.log("data");
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     const getUser = async () => {
-        const response = await fetch(`https://link-up-1.vercel.app/users/${userId}`, {
+        const response = await fetch(`${backendUrl}/users/${userId}`, {
             method: "GET",
             headers: {Authorization: `Bearer ${token}`}
         })
 
         const data = await response.json();
-        console.log(data);
         setUser(data);
     }
 

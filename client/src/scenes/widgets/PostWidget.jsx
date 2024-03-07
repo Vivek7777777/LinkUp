@@ -35,21 +35,17 @@ const PostWidget = ({
     const dispatch = useDispatch();
     const token = useSelector((state) => state.token);
     const loggedInUserId = useSelector((state) => state.user._id);
-    // const isLiked = Boolean(likes[loggedInUserId] === undefined);
     const isLiked = Boolean(likes[loggedInUserId]);
     const likeCount = Object.keys(likes).length;
-
-    // console.log(postUserId);
-    // console.log(token);
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     const { palette } = useTheme();
     const primary = palette.primary.main,
         main = palette.neutral.main;        
 
     const patchLike = async () => {
-        // console.log(postId);
         const response = await fetch(
-            `https://link-up-1.vercel.app/posts/${postId}/likes`,
+            `${backendUrl}/posts/${postId}/likes`,
             {
                 method: "PATCH",
                 headers: {
@@ -61,7 +57,6 @@ const PostWidget = ({
         )
         const updatedPost = await response.json();
         dispatch(setPost({ post: updatedPost }));
-        // console.log(response);
     }
 
 
@@ -89,7 +84,7 @@ const PostWidget = ({
                         borderRadius: ".75rem",
                         marginTop: ".75rem"
                     }}
-                    src={`https://link-up-1.vercel.app/assets/${picturePath}`}
+                    src={picturePath}
                     alt="posts image"
                 />
             )}

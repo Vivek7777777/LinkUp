@@ -8,25 +8,24 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     const dispatch = useDispatch();
     const posts = useSelector((state) => state.posts);
     const token = useSelector((state) => state.token);
-    // console.log(posts);
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
     const getPosts = async () => {
-        const response = await fetch("https://link-up-1.vercel.app/posts", {
+        const response = await fetch(`${backendUrl}/posts`, {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` }
         })
         const data = await response.json();
         dispatch(setPosts({ posts: data }));
-        // console.log(data);
     }
 
     const getUserPosts = async () => {
-        const response = await fetch(`https://link-up-1.vercel.app/posts/${userId}/posts`, {
+        const response = await fetch(`${backendUrl}/posts/${userId}/posts`, {
             method: "GET",
             headers: { Authorization: `Bearer ${token}` }
         })
         const data = await response.json();
         dispatch(setPosts({ posts: data }));
-        console.log(data);
     }
 
 

@@ -18,20 +18,14 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     const primaryDark = palette.primary.dark;
     const main = palette.neutral.main;
     const medium = palette.neutral.medium;
-
-    // console.log(friends);
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     const isFriend = friends.find((friend) => friend._id === friendId);
-    // const isFriend = false;
-    // console.log(isFriend);
 
-    // console.log(_id);
-    // console.log(friendId);
-    // console.log(token);
 
     const patchFriend = async () => {
         const response = await fetch(
-            `https://link-up-1.vercel.app/users/${_id}/${friendId}`,
+            `${backendUrl}/users/${_id}/${friendId}`,
             {
                 method: "PATCH",
                 headers: {
@@ -42,7 +36,6 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
         );
         const data = await response.json();
         dispatch(setFriends({ friends: data }));
-        // console.log("patchfriend " + response);
     };
 
     return (

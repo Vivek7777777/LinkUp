@@ -14,7 +14,6 @@ const LoginPage = () =>{
         <Box>
             <Box
                 width="100%"
-                // backgroundColor="#000"
                 backgroundColor={theme.palette.background.alt}
                 p="1rem 6%"
                 textAlign="center"
@@ -24,7 +23,7 @@ const LoginPage = () =>{
                 fontSize="32px"
                 color="primary"
             >
-                Sociopedia
+                LinkUp
             </Typography>
             </Box>
 
@@ -42,7 +41,7 @@ const LoginPage = () =>{
                         mb: "1.5rem"
                     }}
                 >
-                Welcome to Sociopedia
+                Welcome to LinkUp
                 </Typography>
                 <Form />
             </Box>

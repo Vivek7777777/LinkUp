@@ -6,8 +6,9 @@ import WidgetWrapper from "components/WidgetWrapper";
 export default function AdvertWidget(){
     const {palette} = useTheme();
     const dark = palette.neutral.dark,
-    medium = palette.neutral.medium,
-    main = palette.neutral.main;
+        medium = palette.neutral.medium,
+        main = palette.neutral.main;
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 
     return (
@@ -24,7 +25,7 @@ export default function AdvertWidget(){
                 width={"100%"}
                 height= "auto"
                 alt="advert image"
-                src="https://link-up-1.vercel.app/assets/info4.jpeg"
+                src={`${backendUrl}/assets/info4.jpeg`}
                 style={{
                     borderRadius: ".75rem",
                     margin: ".75rem 0"

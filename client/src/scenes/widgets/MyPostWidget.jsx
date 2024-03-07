@@ -37,6 +37,7 @@ const MyPostWidget = ({ picturePath }) => {
     const isNonMobileScreens = useMediaQuery('(min-width:1000px)');
     const mediumMain = palette.neutral.mediumMain;
     const medium = palette.neutral.medium;
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     const handlePost = async () => {
         const formData = new FormData();
@@ -47,7 +48,7 @@ const MyPostWidget = ({ picturePath }) => {
             formData.append("picturePath", image.name);
         }
 
-        const response = await fetch("https://link-up-1.vercel.app/posts", {
+        const response = await fetch(`${backendUrl}/posts`, {
             method: "POST",
             headers: { Authorization: `Bearer ${token}` },
             body: formData
@@ -80,7 +81,7 @@ const MyPostWidget = ({ picturePath }) => {
                     border={`1px soiid ${medium}`}
                     mt="1rem"
                     borderRadius="5px"
-                    p="1rem"         
+                    p="1rem"
                 >
                     <Dropzone
                         acceptedFiles=".jpg, .jpeg, .png"
@@ -168,7 +169,7 @@ const MyPostWidget = ({ picturePath }) => {
                 )}
 
                 <Button
-                    disabled = {!post}
+                    disabled={!post}
                     onClick={handlePost}
                     sx={{
                         color: palette.background.alt,

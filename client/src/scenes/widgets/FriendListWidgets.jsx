@@ -11,24 +11,20 @@ export default function FriendListWidget({ userId }) {
     const { palette } = useTheme();
     const token = useSelector((state) => state.token);
     const friends = useSelector((state) => state.user.friends);
-
-    // console.log(friends);
-    // console.log(userId);
-    // console.log(token);
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     const getFriends = async () => {
-        try{
-            const respose = await fetch(`https://link-up-1.vercel.app/users/${userId}/friends`,
+        try {
+            const respose = await fetch(`${backendUrl}/users/${userId}/friends`,
                 {
                     method: "GET",
                     headers: { Authorization: `Bearer ${token}` }
                 })
-            // console.log("get griends" + respose);
             const data = await respose.json();
             dispatch(setFriends({ friends: data }));
         }
-        catch(err){
-            console.log("get friend error : " + err );
+        catch (err) {
+            console.log("get friend error : " + err);
         }
     };
 
@@ -53,7 +49,6 @@ export default function FriendListWidget({ userId }) {
                 flexDirection="column"
                 gap="1.5rem"
             >
-                {/* {console.log(friends)   } */}
                 {friends.map((friend) => (
                     <Friend
                         key={friend._id}

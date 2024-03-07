@@ -8,7 +8,7 @@ const UserImage = ({ image, size = "60px" }) => {
                 width={size}
                 height={size}
                 alt="user"
-                src={`https://link-up-1.vercel.app/assets/${image}`}
+                src={image}
             />
         </Box>
     );
