@@ -40,18 +40,37 @@ const MyPostWidget = ({ picturePath }) => {
     const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
     const handlePost = async () => {
-        const formData = new FormData();
-        formData.append("userId", _id);
-        formData.append("description", post);
+        let data = {
+            "userId": _id,
+            "description": post,
+            "picturePath": "",
+        }
+
         if (image) {
-            formData.append("picture", image);
-            formData.append("picturePath", image.name);
+            const formDat = new FormData();
+            formDat.append("image", image);
+
+            // upload image to imgbb
+            const apikey = process.env.REACT_APP_API_KEY;
+            const imgResponse = await fetch(
+                `https://api.imgbb.com/1/upload?key=${apikey}`,
+                {
+                    method: "POST",
+                    body: formDat
+                }
+            )
+            const imgData = await imgResponse.json();
+
+            data.picturePath = imgData.data.url;
         }
 
         const response = await fetch(`${backendUrl}/posts`, {
             method: "POST",
-            headers: { Authorization: `Bearer ${token}` },
-            body: formData
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(data)
         });
         const posts = await response.json();
         dispatch(setPosts({ posts }));
